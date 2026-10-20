@@ -31,11 +31,11 @@ def enter_user_credentials(context,email,password):
 def click_policy_checkbox(context):
     context.helperfunc.find_by_xpath("//label[@for='input-agree']").click()#find checkbox via xpath (searches for a "label" with "for" attribute equal to "input-agree") and click it
 
-@when('the user click continue button')
-def click_on_continue_button(context):
+@when('the user click continue button to register')
+def click_on_continue_register_button(context):
     context.helperfunc.find_by_xpath("//input[@value='Continue']").click()#find continue button via xpath (searches for an "input" with "value" attribute equal to "Continue") and click it
 
-@then('the user should see "([^"]*)"')
+@then('the register result should be "([^"]*)"')
 def check_registration_result(context, result):
     #result is the expected result from the table located in 1_register.feature file
     if result == "success page":

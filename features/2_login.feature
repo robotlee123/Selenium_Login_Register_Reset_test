@@ -4,7 +4,7 @@ Scenario Outline: Login with different credentials as inputs
     Given the user goes to the login page of the ecommerce website
     When the user enters their login credentials: "<email>", "<password>"
     And the user click login button
-    Then the user should see "<result>"
+    Then the login result should be "<result>"
 
     Examples:
         |email             |password     |result                      |

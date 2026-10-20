@@ -4,8 +4,8 @@ Scenario Outline: Register with different credentials as inputs
     Given the user goes to the registration page of the ecommerce website
     When the user enters their credentials: "<email>", "<password>"
     And the user click the privacy policy checkbox
-    And the user click continue button
-    Then the user should see "<result>"
+    And the user click continue button to register
+    Then the register result should be "<result>"
 
     Examples:
         |email             |password     |result                                |

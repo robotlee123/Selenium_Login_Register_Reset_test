@@ -9,7 +9,7 @@ def step(context):
     # context.helperfunc.maximize()
 
 @when('the user enters their login credentials: "([^"]*)", "([^"]*)"')
-def enter_user_credentials(context,email,password):
+def enter_user_login_credentials(context,email,password):
     if email == "registered_email":
         #uses the registered email from previous feature test
         context.helperfunc.find_by_id('input-email').send_keys(context.email) # find email field by using its id, enters registered email address
@@ -25,7 +25,7 @@ def enter_user_credentials(context,email,password):
 def click_on_login_button(context):
     context.helperfunc.find_by_xpath("//input[@value='Login']").click() #find login button using xpath and click it
 
-@then('the user should see "([^"]*)"')
+@then('the login result should be "([^"]*)"')
 def check_succesfull_login(context, result):
     if result == "my account page":
         title = context.helperfunc.get_title()
