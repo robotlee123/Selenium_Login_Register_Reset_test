@@ -1,7 +1,15 @@
 Feature: Login a registered user
 
-Scenario: Successfull login using registered credentials
+Scenario Outline: Login with different credentials as inputs
     Given the user goes to the login page of the ecommerce website
-    When the user enters their registered credentials
+    When the user enters their login credentials: "<email>", "<password>"
     And the user click login button
-    Then the user should be redirected to my account page
+    Then the user should see "<result>"
+
+    Examples:
+        |email             |password     |result                      |
+        |registered_email  |validpassword|my account page             |
+        |registered_email  |wrongpassword|wrong password warning      |
+        |unregistered_email|validpassword|unregistered account warning|
+
+    

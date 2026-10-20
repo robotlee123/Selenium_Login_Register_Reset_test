@@ -27,9 +27,6 @@ class HelperFunc(object):
     def find_by_id(self, id):
         return self._driver_wait.until(EC.visibility_of_element_located((By.ID, id)))
 
-    def find_by_css_selector(self, css):
-            return self._driver_wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, css)))
-
     def get_title(self):
         return self._driver.title
     
