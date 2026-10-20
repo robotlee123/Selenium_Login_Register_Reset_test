@@ -8,8 +8,8 @@ def step(context):
     context.helperfunc.open('https://ecommerce-playground.lambdatest.io/index.php?route=account/forgotten') # goes to the forgot password page
     # context.helperfunc.maximize()
 
-@when('the user enters their email: "([^"]*)"')
-def enter_user_email(context,email):
+@when('the user enters their email: "([^"]*)"') #regex so that values from the table in feature could be inputted to the function
+def enter_user_email(context,email): #the values from the table is inputted as email
     if email == "registered_email":
         #uses the registered email from previous feature test
         context.helperfunc.find_by_id('input-email').send_keys(context.email) # find email field by using its id, enters registered email address
@@ -20,14 +20,14 @@ def enter_user_email(context,email):
 
 @when('the user click continue button to reset')
 def clicks_on_continue_reset_button(context):
-    context.helperfunc.find_by_xpath("//button[text()='Continue']").click() #find login button using xpath and click it
+    context.helperfunc.find_by_xpath("//button[text()='Continue']").click() #find login button using xpath ("button" with a "continue" text attribute) and click it
+    time.sleep(3) # pauses so i could see whats going on
 
 @then('the reset result should be: "([^"]*)"')
 def check_succesfull_reset(context, result):
+    #result is the expected result from the table located in 3_forgetpassword.feature file
     if result == "success":
-        time.sleep(3)
-        assert context.helperfunc.find_by_xpath("//div[contains(text(),'An email with a confirmation link has been sent your email address.')]") # if success this div will show up
-    elif result == "invalid password warning" or result == "unregistered account warning":
-        # unregistered and invalid password results in the same warning showing up
-        time.sleep(3)
-        assert context.helperfunc.find_by_xpath("//div[contains(text(),' Warning: The E-Mail Address was not found in our records, please try again!')]") # if entered email is wrong a div with this text can be found
+        assert context.helperfunc.find_by_xpath("//div[contains(text(),'An email with a confirmation link has been sent your email address.')]") # if success a div with this message will show up
+    elif result == "invalid email warning" or result == "unregistered account warning":
+        # unregistered and invalid email results in the same warning showing up
+        assert context.helperfunc.find_by_xpath("//div[contains(text(),' Warning: The E-Mail Address was not found in our records, please try again!')]") # if entered email is wrong a div with this text will show up

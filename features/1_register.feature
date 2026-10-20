@@ -10,5 +10,5 @@ Scenario Outline: Register with different credentials as inputs
     Examples:
         |email             |password     |result                                |
         |unregistered_email|shortpassword|password too short warning            |
-        |unregistered_email|validpassword|success page                          |
+        |unregistered_email|validpassword|success                               |
         |registered_email  |validpassword|credentials already registered warning|

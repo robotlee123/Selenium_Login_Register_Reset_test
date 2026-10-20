@@ -8,8 +8,8 @@ def step(context):
     context.helperfunc.open('https://ecommerce-playground.lambdatest.io/index.php?route=account/login') # goes to the login page
     # context.helperfunc.maximize()
 
-@when('the user enters their login credentials: "([^"]*)", "([^"]*)"')
-def enter_user_login_credentials(context,email,password):
+@when('the user enters their login credentials: "([^"]*)", "([^"]*)"') #regex so that values from the table in feature could be inputted to the function
+def enter_user_login_credentials(context,email,password): #the values from the table is inputted as email and password
     if email == "registered_email":
         #uses the registered email from previous feature test
         context.helperfunc.find_by_id('input-email').send_keys(context.email) # find email field by using its id, enters registered email address
@@ -23,15 +23,15 @@ def enter_user_login_credentials(context,email,password):
 
 @when('the user click login button')
 def click_on_login_button(context):
-    context.helperfunc.find_by_xpath("//input[@value='Login']").click() #find login button using xpath and click it
+    context.helperfunc.find_by_xpath("//input[@value='Login']").click() #find login button using xpath ("input" with "value" attribute equals to "login") and click it
+    time.sleep(3) # pauses so i could see whats going on
 
 @then('the login result should be "([^"]*)"')
 def check_succesfull_login(context, result):
-    if result == "my account page":
+    #result is the expected result from the table located in 2_login.feature file
+    if result == "success":
         title = context.helperfunc.get_title()
-        time.sleep(3)
         assert(title == "My Account") # successfull login redirects user to a page with this title
     elif result == "wrong password warning" or result == "unregistered account warning":
         # unregistered and wrong password results in the same warning showing up
-        time.sleep(3)
         assert context.helperfunc.find_by_xpath("//div[contains(text(),'Warning: No match for E-Mail Address and/or Password.')]") # if entered credentials is wrong a div with this text can be found

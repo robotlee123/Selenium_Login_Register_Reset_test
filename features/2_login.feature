@@ -8,7 +8,7 @@ Scenario Outline: Login with different credentials as inputs
 
     Examples:
         |email             |password     |result                      |
-        |registered_email  |validpassword|my account page             |
+        |registered_email  |validpassword|success                     |
         |registered_email  |wrongpassword|wrong password warning      |
         |unregistered_email|validpassword|unregistered account warning|
 

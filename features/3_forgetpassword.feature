@@ -9,7 +9,7 @@ Scenario Outline: attempt to reset password with different email address as inpu
     Examples:
         |email             |result                      |
         |registered_email  |success                     |
-        |invalid_email     |invalid password warning    |
+        |invalid_email     |invalid email warning       |
         |unregistered_email|unregistered account warning|
 
     
