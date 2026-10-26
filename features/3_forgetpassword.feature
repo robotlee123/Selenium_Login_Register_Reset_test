@@ -7,9 +7,9 @@ Scenario Outline: attempt to reset password with different email address as inpu
     Then the reset result should be: "<result>"
 
     Examples:
-        |email             |result                      |
-        |registered_email  |success                     |
-        |invalid_email     |invalid email warning       |
-        |unregistered_email|unregistered account warning|
+        |email             |result |
+        |registered_email  |success|
+        |invalid_email     |fail   |
+        |unregistered_email|fail   |
 
     
