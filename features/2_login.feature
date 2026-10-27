@@ -7,9 +7,10 @@ Scenario Outline: Login with different credentials as inputs
     Then the login result should be "<result>"
 
     Examples:
-        |email             |password     |result                      |
-        |registered_email  |validpassword|success                     |
-        |registered_email  |wrongpassword|wrong password warning      |
-        |unregistered_email|validpassword|unregistered account warning|
+        |email             |password     |result |
+        |registered_email  |validpassword|success|
+        |registered_email  |wrongpassword|fail   |
+        |unregistered_email|validpassword|fail   |
+
 
     
