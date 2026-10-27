@@ -47,7 +47,7 @@ def click_policy_checkbox(context):
 @when('the user click continue button to register')
 def click_on_continue_register_button(context):
     context.helperfunc.find_by_xpath("//input[@value='Continue']").click()#find continue button via xpath (searches for an "input" with "value" attribute equal to "Continue") and click it
-    time.sleep(3)
+
 
 @then('the register result should be "([^"]*)"')
 def check_registration_result(context, result):
