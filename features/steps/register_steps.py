@@ -52,7 +52,7 @@ def check_registration_result(context, result):
     if result == "success":
         title = context.helperfunc.get_title()
         assert(title == "Your Account Has Been Created!") # if success in creating an account the user redirected to a page with this title
-    elif result == "password length":
+    elif result == "password length warning":
         r = context.helperfunc.find_by_xpath("//div[contains(text(),'Password must be between 4 and 20 characters!')]") # if entered password is too short a div with this text can be found
         assert r is not None, "Password length warning did not appear"
     elif result == "credentials already registered warning":
