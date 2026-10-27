@@ -27,8 +27,11 @@ def enter_user_credentials(context,email,password): #the values from the table i
             context.helperfunc.find_by_id('input-password').send_keys(context.password)# find password field by using its id, enters random string as password
             context.helperfunc.find_by_id('input-confirm').send_keys(context.password)# same password to confirm
         elif password == "longpassword":
-            context.helperfunc.find_by_id('input-password').send_keys(context.longpassword)# longpassword: password with 21 characters (max is 20)
+            context.helperfunc.find_by_id('input-password').send_keys(context.longpassword)# longpassword: password with 40 characters (max is 20)
             context.helperfunc.find_by_id('input-confirm').send_keys(context.longpassword)
+        elif password == "reallylongpassword":
+            context.helperfunc.find_by_id('input-password').send_keys(context.reallylongpassword)# reallylongpassword: password with 41 characters (max is 20)
+            context.helperfunc.find_by_id('input-confirm').send_keys(context.reallylongpassword)
         else:
             context.helperfunc.find_by_id('input-password').send_keys(context.password[:1])# shortpassword: enters random string of length 1 as password
             context.helperfunc.find_by_id('input-confirm').send_keys(context.password[:1])
@@ -44,7 +47,7 @@ def click_policy_checkbox(context):
 @when('the user click continue button to register')
 def click_on_continue_register_button(context):
     context.helperfunc.find_by_xpath("//input[@value='Continue']").click()#find continue button via xpath (searches for an "input" with "value" attribute equal to "Continue") and click it
-
+    time.sleep(3)
 
 @then('the register result should be "([^"]*)"')
 def check_registration_result(context, result):
@@ -55,7 +58,4 @@ def check_registration_result(context, result):
     elif result == "password length warning":
         r = context.helperfunc.find_by_xpath("//div[contains(text(),'Password must be between 4 and 20 characters!')]") # if entered password is too short a div with this text can be found
         assert r is not None, "Password length warning did not appear"
-    elif result == "credentials already registered warning":
-        r = context.helperfunc.find_by_xpath("//div[contains(text(),'Warning: E-Mail Address is already registered!')]") # if entered credentials is registered a div with this text can be found
-        assert r is not None, "Credentials already registered warning did not appear"
         

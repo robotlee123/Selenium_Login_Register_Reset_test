@@ -24,8 +24,8 @@ def before_scenario(context, scenario):
 
     context.unregistered_email = "unregistered_email" + random_string[:4] + "@email.com" #creates email address that will not be registered
     context.password = random_string[:10] #from the random_string select 10 character to be a password
-    context.longpassword = random_string[:21] #from the random_string select 21 character to be a password
-    
+    context.longpassword = random_string[:20] + random_string[:20]#from the random_string select 40 character to be a password
+    context.reallylongpassword = random_string[:20] + random_string[:21]#from the random_string select 41 character to be a password
 def after_scenario(context, scenario):
     #after each scenario quit the driver
     context.helperfunc.close() 
