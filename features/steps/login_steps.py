@@ -11,7 +11,7 @@ def step(context):
 @when('the user enters their login credentials: "([^"]*)", "([^"]*)"') #regex so that values from the table in feature could be inputted to the function
 def enter_user_login_credentials(context,email,password): #the values from the table is inputted as email and password
     if email == "registered_email":
-        #uses the registered email from previous feature test
+        #uses a pre registered email
         context.helperfunc.find_by_id('input-email').send_keys(context.registered_email) # find email field by using its id, enters registered email address
         if password == "validpassword":
             context.helperfunc.find_by_id('input-password').send_keys(context.registered_password)# find password field by using its id, enters correct&valid password
@@ -25,7 +25,7 @@ def enter_user_login_credentials(context,email,password): #the values from the t
 @when('the user click login button')
 def click_on_login_button(context):
     context.helperfunc.find_by_xpath("//input[@value='Login']").click() #find login button using xpath ("input" with "value" attribute equals to "login") and click it
-    time.sleep(3) # pauses to wait for the page to load on slower internet
+
 
 @then('the login result should be "([^"]*)"')
 def check_succesfull_login(context, result):

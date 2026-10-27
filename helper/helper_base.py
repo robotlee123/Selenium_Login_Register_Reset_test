@@ -19,16 +19,11 @@ class HelperFunc(object):
         self._driver.quit()
     # helper functions to find an element by its xpath, name, id
     def find_by_xpath(self, xpath):
-        # self._driver_wait ensures web elements are loaded before used.
-        return self._driver_wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
-
-    def find_any_by_xpath(self, *xpaths):
-        """Wait until any one of the xpaths is visible. Returns the first visible element, or None on timeout."""
+        '''Instead of an exception if element not found return None'''
         def any_visible(driver):
-            for xpath in xpaths:
-                for element in driver.find_elements(By.XPATH, xpath):
-                    if element.is_displayed():
-                        return element
+            for element in driver.find_elements(By.XPATH, xpath):
+                if element.is_displayed():
+                    return element
             return False
 
         try:

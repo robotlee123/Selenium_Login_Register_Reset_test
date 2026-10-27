@@ -44,7 +44,7 @@ def click_policy_checkbox(context):
 @when('the user click continue button to register')
 def click_on_continue_register_button(context):
     context.helperfunc.find_by_xpath("//input[@value='Continue']").click()#find continue button via xpath (searches for an "input" with "value" attribute equal to "Continue") and click it
-    time.sleep(3) # pauses to wait for the page to load on slower internet
+
 
 @then('the register result should be "([^"]*)"')
 def check_registration_result(context, result):
@@ -52,11 +52,10 @@ def check_registration_result(context, result):
     if result == "success":
         title = context.helperfunc.get_title()
         assert(title == "Your Account Has Been Created!") # if success in creating an account the user redirected to a page with this title
-    elif result == "fail":
-        error = context.helperfunc.find_any_by_xpath(
-            "//div[contains(text(),'Password must be between 4 and 20 characters!')]",
-            "//div[contains(text(),'Warning: E-Mail Address is already registered!')]",
-            "//div[contains(text(),'E-Mail Address does not appear to be valid!')]"
-        )
-        assert error is not None, "Neither the password-length error nor the already-registered warning appeared"
+    elif result == "password length":
+        r = context.helperfunc.find_by_xpath("//div[contains(text(),'Password must be between 4 and 20 characters!')]") # if entered password is too short a div with this text can be found
+        assert r is not None, "Password length warning did not appear"
+    elif result == "credentials already registered warning":
+        r = context.helperfunc.find_by_xpath("//div[contains(text(),'Warning: E-Mail Address is already registered!')]") # if entered credentials is registered a div with this text can be found
+        assert r is not None, "Credentials already registered warning did not appear"
         

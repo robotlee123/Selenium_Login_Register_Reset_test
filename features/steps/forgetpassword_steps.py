@@ -21,7 +21,7 @@ def enter_user_email(context,email): #the values from the table is inputted as e
 @when('the user click continue button to reset')
 def clicks_on_continue_reset_button(context):
     context.helperfunc.find_by_xpath("//input[@value='Continue']").click() #find login button using xpath ("button" with a "continue" text attribute) and click it
-    time.sleep(5) # pauses to wait for the page to load on slower internet
+
 
 @then('the reset result should be: "([^"]*)"')
 def check_succesfull_reset(context, result):
